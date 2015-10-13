@@ -207,13 +207,80 @@ Un broadcast receiver est implémenté comme sous classe de \verb!BroadcastRecei
 \end{frame}
 
 
-\section{Les activités}
+\begin{frame}
+\frametitle{Un manifest}
+\begin{center}
+\includegraphics[scale=0.4]{manifest.png}
+\end{center}
 
-\section{Les intentions}
+\end{frame}
 
+
+
+
+\section{L'hello world Android}
+
+
+\begin{frame}
+\frametitle{Positionnement des composants}
+\begin{center}
+\includegraphics[scale=0.4]{layout.png}
+\end{center}
+
+\begin{block}{}
+La construction de l'UI se fait via un document XML
+\end{block}
+
+\begin{block}{}
+Les composants s'agencent "automatiquement" (Vertical / Horizontal Layout, \verb!gravity!, \verb!match\_parent! et \verb!wrap\_content!).
+\end{block}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Une activité}
+\begin{center}
+\includegraphics[scale=0.4]{mainact.png}
+\end{center}
+
+\begin{block}{}
+Ici, l'activité "charge" l'interface depuis le fichier XML à sa création.
+\end{block}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Arborescence}
+\begin{center}
+\includegraphics[scale=0.3]{tree.png}
+\end{center}
+\begin{block}{}
+On trouve le fichier manifest.xml, l'implémentation de l'activité.
+\end{block}
+
+\begin{block}{}
+Les ressources contiennent les textes, les interfaces (layout), les images (drawable)...
+\end{block}
+\end{frame}
+
+\section{Conclusion}
+\begin{frame}
+\begin{alertblock}{Assez parler...}
+Maintenant codons!
+\end{alertblock}
+\begin{block}{Pour commencer...}
+https://developer.android.com/training/basics/firstapp/building-ui.html
+\end{block}
+
+\end{frame}
 \begin{frame}
 \begin{center}
 Pour me contacter : jeremy.cochoy@u-psud.fr, merci et à bientôt.
+
+\medskip
+\medskip
+\medskip
+\medskip
 
 \includegraphics[scale=0.18]{android.jpg}
 \end{center}
