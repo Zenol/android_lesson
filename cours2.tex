@@ -177,13 +177,39 @@ Un broadcast receiver est implémenté comme sous classe de \verb!BroadcastRecei
 \end{frame}
 
 \begin{frame}
+\frametitle{Appeler un composant}
+\begin{center}
+\includegraphics[scale=0.1]{app.jpg}
+\end{center}
+
 \begin{itemize}
-\item Une app peux lancer le composant d'une autre app
-\item Chaque composant s'éxécute dans l'app à laquel il appartiens
+\item Une app peux appeler le composant d'une autre app.
+\item Chaque composant s'exécute dans l'app à laquelle il appartiens.
 \item Il n'existe donc pas de \verb!main()! comme dans d'autres applications.
 \end{itemize}
 
 \end{frame}
+
+\section{Le manifest}
+
+\begin{frame}
+\frametitle{A quoi sert le fichier manifest?}
+
+\begin{itemize}
+\item Liste les permissions requise pour exécuter l'application (liste de contactes, internet, appareille photo, ...)
+\item Déclare l'API minimal sous la quel l'application peux s'exécuter
+\item Déclare les fonctionnalités matériel requise/utilisé par l'application (bluetouth, multitouch, ...)
+\item Bibliothèques utilisés (ex : Google Maps library)
+\item Liste les composants de l'application
+\item et encore d'autres choses...
+\end{itemize}
+
+\end{frame}
+
+
+\section{Les activités}
+
+\section{Les intentions}
 
 \begin{frame}
 \begin{center}
