@@ -12,6 +12,24 @@
 \usepackage{amsthm}
 \usepackage{stmaryrd}
 
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color
+  basicstyle=\footnotesize,        % size of fonts used for the code
+  breaklines=true,                 % automatic line breaking only at whitespace
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  keywordstyle=\color{blue},       % keyword style
+  stringstyle=\color{mymauve},     % string literal style
+}
+
 \usepackage[all]{xy}
 
 %Les sous listes on des triangles
@@ -47,6 +65,15 @@
 
 \end{frame}
 
+\section{Démonstration GIT et GitHub}
+
+\begin{frame}
+\frametitle{GitHub}
+\begin{center}
+\includegraphics[scale=0.4]{github.jpg}
+\end{center}
+\end{frame}
+
 \section{Intention}
 
 \begin{frame}
@@ -70,7 +97,7 @@ Une \verb!Intent! est un objet qui représente un message, et permet de demander
 \frametitle{Démarrer une activité}
 
 \begin{block}{\verb!Activity!}
-Une \verb!Activity! représente un écran dans une app. On peux lancer une activité en donnant un \verb!Intent! à \verb!startActivity()!. L'intention décri l'activité et lui fournis les données.
+Une \verb!Activity! représente un écran dans une app. On peux lancer une activité en donnant un \verb!Intent! à \verb!startActivity()!. L'intention décrit l'activité et lui fournit les données.
 \end{block}
 
 \begin{block}{Avec résultat}
@@ -85,7 +112,7 @@ Si l'activité doit fournir un résultat, on dispose de \verb!startActivityForRe
 
 \begin{itemize}
 \item One time operation : Donner un Intent à \verb!startService()!.
-\item Si le service a une interface cleint-serveur, on dispose de \verb!bindService()!.
+\item Si le service a une interface client-serveur, on dispose de \verb!bindService()!.
 \end{itemize}
 \end{block}
 \end{frame}
@@ -94,7 +121,7 @@ Si l'activité doit fournir un résultat, on dispose de \verb!startActivityForRe
 \frametitle{Délivrer un message}
 
 \begin{block}{Broadcast}
-Un broadcast est un message que n'importe quelle application peut recevoir.
+Un broadcast est un message que n'importe quelle application peux recevoir.
 \end{block}
 
 \begin{block}{Délivrer un message}
@@ -102,6 +129,163 @@ Donner un \verb!Intent! à \verb!sendBroadcast()! ou \verb!sendOrderedBroadcast(
 \end{block}
 \end{frame}
 
+\begin{frame}
+\begin{block}{Deux types d'Intent :}
+\begin{itemize}
+\item Explicite : Contient le nom du composant explicite.
+\item Implicite : Décrit une action à effectuer (url, localisation, ...).
+\end{itemize}
+
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Filtres}
+\begin{center}
+\includegraphics[scale=0.3]{intent-filters2.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Exemple de filtre}
+\begin{block}{Filtre le partage d'images}
+\lstset{language=XML}
+\begin{lstlisting}
+<activity android:name="ShareActivity">
+ <intent-filter>
+  <action android:name="android.intent.action.SEND"/>
+  <category android:name="android.intent.category.DEFAULT"/>
+  <data android:mimeType="text/plain"/>
+  <data android:mimeType="image/*"/>
+ </intent-filter>
+</activity>
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Construire une intention}
+\begin{block}{Une intention contient les informations suivantes :}
+\begin{itemize}
+\item Nom du composant
+\item Action
+\item Data
+\item Category
+\item Extras
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Nom du composant}
+\begin{block}{Le nom du composant à lancer}
+Nécessaire pour une intention explicite.
+\end{block}
+\begin{block}{}
+Un \verb!Service! doit toujours être lancer explicitement.
+\end{block}
+Le champ de l'\verb!Intent! est un objet \verb!ComponentName! qui contient un chemin complet vers le nom de la classe. Par exemple : \emph{com.example.ExampleActivity}. La valeur peut être fixer avec \verb!setComponent()!, \verb!setClass()!, \verb!setClassName()!, ou le constructeur de l'\verb!Intent!.
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Action}
+Une chaîne qui spécifie le type d'action à effectuer.
+
+\begin{block}{Quelques actions classiques}
+\begin{itemize}
+\item \verb!ACTION\_VIEW! Avec \verb!startActivity()! pour afficher une information (Photo, localisation...)
+\item \verb!ACTION\_SEEND! Avec \verb!startActivity()! , pour "partager" (share).
+\item \verb!ACTION\_EDIT! Fournis un document à éditer.
+\item \verb!ACTION\_PICK! Sélectionne un fichier / image / etc...
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Data}
+L'objet \verb!Uri! qui contient une référence / lien vers les données à transmettre.
+
+\medskip
+
+Il est bon de préciser le type.
+
+\medskip
+
+Les méthodes \verb!setData()!, \verb!setType()! sont exclusives, mais \verb!setDataAndType()! permet de spécifier les deux.
+\end{frame}
+
+\begin{frame}
+\frametitle{Extra}
+Permet de passer des données sous la forme clef-valeur.
+
+\medskip
+
+Via la méthode \verb!putExtra()!, ou un \verb!Bundle! avec \verb!putExtras()!.
+
+\begin{block}{Exemple :}
+Dans un ACTION\_SEND, on peux vouloir ajouter les valeurs EXTRA\_EMAIL et EXTRA\_SUBJECT pour envoyer un e-mail.
+\end{block}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Catégories}
+\begin{itemize}
+
+\item Permet d’être plus précis sur quels activités sont concerner.
+
+\item La CATEGORY\_DEFAULT convient à la plupart des usages.
+
+\item Par exemple, CATEGORY\_BROWSABLE spécifie que l'élément transmit peut être ouvert par un navigateur web.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Exemple explicite :}
+\lstset{language=java}
+
+\begin{block}{Explicit intent}
+\begin{lstlisting}
+// Executed in an Activity, so 'this' is the Context
+// The fileUrl is a string URL, such as "http://www.example.com/image.png"
+Intent downloadIntent = new Intent(this, DownloadService.class);
+// DownloadService is the name of the app.
+downloadIntent.setData(Uri.parse(fileUrl));
+startService(downloadIntent);
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Exemple implicite :}
+\lstset{language=java}
+
+\begin{block}{Implicit intent}
+\begin{lstlisting}
+// Create the text message with a string
+Intent sendIntent = new Intent();
+sendIntent.setAction(Intent.ACTION_SEND);
+sendIntent.putExtra(Intent.EXTRA_TEXT, textMessage);
+sendIntent.setType("text/plain");
+
+// Verify that the intent will resolve to an activity
+if (sendIntent.resolveActivity(getPackageManager()) != null) {
+    startActivity(sendIntent);
+}
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+\section{Activités}
+
+\begin{frame}
+\begin{center}
+\includegraphics[scale=0.3]{activity_lifecycle.png}
+\end{center}
+
+\end{frame}
 
 \section{Conclusion}
 
