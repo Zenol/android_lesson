@@ -1,0 +1,121 @@
+\documentclass{beamer}
+
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usetheme{Warsaw}
+\useoutertheme{infolines}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{stmaryrd}
+
+\usepackage[all]{xy}
+
+%Les sous listes on des triangles
+\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{itemize subitem}[triangle]
+%Les elements caché sont grisé
+\beamertemplatetransparentcovered
+
+\begin{document}
+
+\title{Android - Les fondamentaux}
+\author{Jérémy S. Cochoy}
+\institute{INRIA Paris-Saclay | jeremy.cochoy@u-psud.fr}
+\date{Octobre 2015}
+
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\tableofcontents
+\end{frame}
+
+\begin{frame}
+\frametitle{La documentation}
+
+\begin{block}{Votre nouveau livre de chevet.}
+\begin{center}
+\emph{https://developer.android.com/guide/index.html}
+\end{center}
+\end{block}
+
+\end{frame}
+
+\section{Intention}
+
+\begin{frame}
+\frametitle{Qu'est-ce qu'une intention?}
+
+\begin{block}{Une \verb!Intent!}
+Une \verb!Intent! est un objet qui représente un message, et permet de demander une action a un Composant.
+\end{block}
+
+\begin{block}{Les usages principaux :}
+	\begin{itemize}
+		\item Lancer une activité.
+		\item Lancer un service.
+		\item Délivrer un message.
+	\end{itemize}
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Démarrer une activité}
+
+\begin{block}{\verb!Activity!}
+Une \verb!Activity! représente un écran dans une app. On peux lancer une activité en donnant un \verb!Intent! à \verb!startActivity()!. L'intention décri l'activité et lui fournis les données.
+\end{block}
+
+\begin{block}{Avec résultat}
+Si l'activité doit fournir un résultat, on dispose de \verb!startActivityForResult()! et de \verb!onActivityResult()!.
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Démarrer un service}
+
+\begin{block}{Un service effectue des actions en arrière plan, sans interface.}
+
+\begin{itemize}
+\item One time operation : Donner un Intent à \verb!startService()!.
+\item Si le service a une interface cleint-serveur, on dispose de \verb!bindService()!.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Délivrer un message}
+
+\begin{block}{Broadcast}
+Un broadcast est un message que n'importe quelle application peut recevoir.
+\end{block}
+
+\begin{block}{Délivrer un message}
+Donner un \verb!Intent! à \verb!sendBroadcast()! ou \verb!sendOrderedBroadcast()!.
+\end{block}
+\end{frame}
+
+
+\section{Conclusion}
+
+\begin{frame}
+\begin{center}
+Pour me contacter : jeremy.cochoy@u-psud.fr, merci et à bientôt.
+
+\medskip
+\medskip
+\medskip
+\medskip
+
+\includegraphics[scale=0.18]{android.jpg}
+\end{center}
+\end{frame}
+
+\end{document}
