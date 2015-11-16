@@ -43,7 +43,7 @@
 \title{Android - Les fondamentaux}
 \author{Jérémy S. Cochoy}
 \institute{INRIA Paris-Saclay | jeremy.cochoy@u-psud.fr}
-\date{Octobre 2015}
+\date{Novembre 2015}
 
 
 \begin{frame}
@@ -155,7 +155,6 @@ Donner un \verb!Intent! à \verb!sendBroadcast()! ou \verb!sendOrderedBroadcast(
  <intent-filter>
   <action android:name="android.intent.action.SEND"/>
   <category android:name="android.intent.category.DEFAULT"/>
-  <data android:mimeType="text/plain"/>
   <data android:mimeType="image/*"/>
  </intent-filter>
 </activity>
@@ -281,6 +280,9 @@ if (sendIntent.resolveActivity(getPackageManager()) != null) {
 \section{Activités}
 
 \begin{frame}
+
+\frametitle{Cycle de vie d'une activité}
+
 \begin{center}
 \includegraphics[scale=0.5]{basic-lifecycle.png}
 \end{center}
@@ -292,7 +294,7 @@ if (sendIntent.resolveActivity(getPackageManager()) != null) {
 \end{center}
 
 \end{frame}
-
+\lstset{language=java}
 \begin{frame}[fragile]
 \begin{lstlisting}
 public class ExampleActivity extends Activity {
