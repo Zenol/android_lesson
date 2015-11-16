@@ -81,8 +81,100 @@ Correction du TP : Appareille Photo
 \end{block}
 \end{frame}
 
+\section{Tic Tac Toe}
+
+\begin{frame}
+\frametitle{TP : Réalisez un Tic Tac Toe}
+\begin{center}
+\includegraphics[scale=0.45]{tictactoe.jpg}
+\end{center}
+\begin{block}{}
+\begin{center}
+Commencez le TP Tic-Tac-Toe.
+\end{center}
+\end{block}
+\end{frame}
+
+\section{MVC}
+
+\begin{frame}
+\frametitle{Le pattern MVC}
+\begin{center}
+\includegraphics[scale=0.4]{mvc_intro.png}
+\end{center}
+\end{frame}
+
+\subsection{Vue}
+\begin{frame}
+\begin{center}
+\includegraphics[scale=0.4]{view.png}
+\end{center}
+\begin{block}{La vue}
+C'est l'interface qu'affiche votre application. Dans un projet Android, il s'agit du XML, ainsi que des composants que vous ajoutez dynamiquement via le code de votre activité.
+\end{block}
+\end{frame}
+
+\subsection{Modèle}
+\begin{frame}
+\begin{center}
+\includegraphics[scale=0.2]{data.jpeg}
+\end{center}
+\begin{block}{Le modèle}
+Une ou des classes qui gèrent l'accès à vos données. Elles peuvent provenir d'un accès distant, un serveur ftp, un fichier local, une base de donnée locale(SQLite) ou distante (MySQL)...
+\end{block}
+\end{frame}
+
+\subsection{Contrôleur}
+\begin{frame}
+\begin{center}
+\includegraphics[scale=0.2]{controler.jpeg}
+\end{center}
+\begin{block}{Le contrôleur}
+C'est essentiellement le code de vos activités : le code formate les données, et les envois dans la vue. Le code gère les actions de l’utilisateur et réagis en conséquences (appel d'une nouvelle activité pour changer la vue, prise de photo, changement des images affichés...).
+\end{block}
+\end{frame}
+
+\subsection{Intéret ?}
+
+\begin{frame}
+\frametitle{Résumé}
+\begin{center}
+\includegraphics[scale=0.35]{MVC.png}
+\end{center}
+\begin{block}{Modèle MVC :}
+\begin{itemize}
+\item Modèle (Model) : Ce que l'on veut afficher
+\item Vue (View) : Comment l'afficher
+\item Controleur (Controler) : Formate les données pour les afficher, et gère les événements tels que les entrées utilisateur.
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Avantages du MVC?}
+\begin{block}{Indépendance}
+Les 3 blocs sont indépendant et communique via une interface claire et précise.
+\end{block}
+\pause
+\begin{block}{Substitution de modèle}
+Il est possible de remplacer un modèle "fichier locale" par un modèle "base de donnée distante", avec un minimum de modification de code, et sans modification sur la vue.
+\end{block}
+\pause
+\begin{block}{Substitution de vue}
+En modifiant uniquement l'XML, on peux revoir le design de l'interface.
+\end{block}
+\pause
+\begin{alertblock}{Dark side}
+Attention aux fausses bonnes idées...
+\end{alertblock}
+\end{frame}
+
+
+
 \section{Fragments}
 
+\subsection{Kézako}
 \begin{frame}
 \frametitle{Les fragments}
 
@@ -120,6 +212,8 @@ Pour permettre a nos applications de s'adapter aux supports physique.
 \end{center}
 \end{frame}
 
+\subsection{Créer un fragment}
+
 \begin{frame}
 \frametitle{Créer un fragment}
 \begin{block}{Comment faire?}
@@ -153,6 +247,8 @@ public class ArticleFragment extends Fragment {
 \end{lstlisting}
 \end{block}
 \end{frame}
+
+\subsection{L'utiliser dans une vue}
 
 \begin{frame}
 \frametitle{Ajouter un fragment à son activité}
@@ -193,6 +289,8 @@ A l’exécution, on peux déterminer la résolution de l’écran et dynamiquem
 \end{lstlisting}
 \end{block}
 \end{frame}
+
+\subsection{UI dynamiques}
 
 \begin{frame}[fragile]
 \frametitle{Ajouter un fragment à l'exécution}
@@ -262,5 +360,204 @@ transaction.commit();
 Parce que son ajout est dynamique, ce fragment pourras être retiré ou remplacé.
 \end{exampleblock}
 \end{frame}
+
+
+\begin{frame}
+\frametitle{Remplacer un fragment}
+
+\begin{block}{Comment remplacer un fragment?}
+Avec la méthode \verb!replace()! au lieu de \verb!add()!.
+\end{block}
+\pause
+\begin{block}{Récupérer le fragment remplacé}
+Souvent, on souhaite permettre à l'utilisateur "d'annuler" la transaction, et récupérer le fragment précédent. Pour ça il suffit d’appeler \verb!addToBackStack()! durant la transaction.
+\end{block}
+\pause
+\begin{block}{Vie d'un fragment}
+Si un fragment est poussé sur la pile de retour, alors il est \emph{stoppé}. Après un retour en arière, il passera dans l'état \emph{redémarré}. Sinon, il est \emph{détruit}.
+\end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Remplacer un fragment}
+
+\begin{exampleblock}{Création d'un nouveau fragment et de ses arguments :}
+\begin{lstlisting}
+//Le fragment
+ArticleFragment newFragment = new ArticleFragment();
+
+//Les arguments
+Bundle args = new Bundle();
+args.putInt(ArticleFragment.ARG_POSITION, position);
+newFragment.setArguments(args);
+\end{lstlisting}
+\end{exampleblock}
+
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Remplacer un fragment}
+
+\begin{exampleblock}{Création d'un nouveau fragment}
+\begin{lstlisting}
+//Commence une transaction
+FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+// Remplace le fragment
+transaction.replace(R.id.fragment_container, newFragment);
+// Conserve le fragment precedant
+transaction.addToBackStack(null);
+// Effectue la transaction
+transaction.commit();
+\end{lstlisting}
+\end{exampleblock}
+
+
+\begin{block}{\verb!addToBackStack()!}
+\verb!addToBackStack()! prend en argument une chaîne de caractère optionnelle qui permet de donner un identifiant unique à la transaction, pour effectuer des opérations avancées.
+\end{block}
+
+\end{frame}
+
+
+\subsection{Communication entre fragments}
+
+\begin{frame}
+\frametitle{Communiquer entre fragments}
+\begin{block}{Comment ?}
+La communication se fait vià l'activité, en lui imposant d'implémenter une \emph{interface}.
+\end{block}
+\pause
+\begin{block}{}
+On récupère un pointeur vers l'activité, que l'on downcast vers notre interface. Il y à donc un certains nombre de précautions à prendre.
+\end{block}
+\end{frame}
+
+\begin{frame}
+  \begin{block}{Disons que notre fragment hérite de ListFragment...}
+    \begin{center}
+      \includegraphics[scale=0.15]{listview.png}
+    \end{center}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Forcer une interface pour notre activité}
+\begin{block}{On définit notre interface ...}
+\begin{lstlisting}
+// Notre fragment
+public class HeadlinesFragment extends ListFragment {
+	// Variable global qui contiendra un pointeur vers l'Activity
+    OnHeadlineSelectedListener mCallback;
+
+    // L'Activity contenant le fragment devras implementer l'interface :
+    public interface OnHeadlineSelectedListener {
+        public void onArticleSelected(int position);
+    }
+    
+    ...
+}
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Forcer une interface pour notre activité}
+\begin{block}{... puis l'on récupère un pointeur vers l'activité, et on s'assure qu'elle implémente bien notre interface.}
+\begin{lstlisting}
+  @Override
+  public void onAttach(Activity activity) {
+    super.onAttach(activity);
+        
+    // Pour etre sur de la presence d'une implementation,
+    // on effectue une conversion explicite vers OnHeadlineSelectedListener.
+    try {
+      mCallback = (OnHeadlineSelectedListener) activity;
+    } catch (ClassCastException e) {
+      throw new ClassCastException(activity.toString()
+          + " must implement OnHeadlineSelectedListener");
+    }
+  }
+\end{lstlisting}
+\end{block}
+\end{frame}
+    
+\begin{frame}[fragile]
+\frametitle{Exemple de communication}
+\begin{exampleblock}{Un example d'utilisation de l'interface :}
+\begin{lstlisting}
+@Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        // Appel la fonction de l'Activity.
+        mCallback.onArticleSelected(position);
+    }
+\end{lstlisting}
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Coté activité...}
+\begin{block}{Implémentation de l'interface}
+\begin{lstlisting}
+public static class MainActivity extends Activity
+        implements HeadlinesFragment.OnHeadlineSelectedListener{
+    ...
+    
+    public void onArticleSelected(int position) {
+        // L'utilisateur a choisit un item dans la liste
+        // On effectue le necessaire pour afficher l'article correspondant.
+    }
+}
+\end{lstlisting}
+
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Pour gérer un mode tablette et un mode mobile...}
+\begin{block}{L'activité qui parlais à l'oreille des fragments...}
+\begin{lstlisting}
+public void onArticleSelected(int position) {
+
+//On cherche notre fragment
+  ArticleFragment articleFrag = (ArticleFragment)
+    getSupportFragmentManager().findFragmentById(R.id.article_fragment);
+
+  if (articleFrag != null) {
+  // On a bien notre fragment, donc on change l'affichage
+  articleFrag.updateArticleView(position);
+  } else {
+    // Suite au prochain slide...
+  }
+}
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Cas mono-screen...}
+\begin{lstlisting}
+} else {
+  // On est en mode 'un seul ecran'.
+
+  // On construit le nouveau fragment
+  ArticleFragment newFragment = new ArticleFragment();
+  Bundle args = new Bundle();
+  args.putInt(ArticleFragment.ARG_POSITION, position);
+  newFragment.setArguments(args);
+
+  //Et l'on effectue la transaction...
+  FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+  transaction.replace(R.id.fragment_container, newFragment);
+  transaction.addToBackStack(null);
+
+  //On realise la transaction
+  transaction.commit();
+}
+\end{lstlisting}
+\end{frame}
+    
+
 
 \end{document}
