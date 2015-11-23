@@ -77,6 +77,10 @@
 \section{Le design}
 
 \begin{frame}
+SECTION
+\end{frame}
+
+\begin{frame}
 \frametitle{Les types de widgets}
 \begin{block}{Les différentes catégories de widgets sont :}
 \begin{itemize}
@@ -134,6 +138,33 @@ est avant tout un widget de contrôle, mais il permet aussi de suivre le nom du 
 \includegraphics[scale=0.2]{widgets_gestures.png}
 \end{center}
 Du à leur contexte d'utilisation, les widgets ont des limitations technique sur la façon dont un utilisateur inter-réagira avec. Par exemple, un widget présent sur l'écran d’accueil ne peux accéder qu'aux pressions de l'utilisateur, et au slide vertical. Le slide horizontale est déjà utilisé pour naviguer entre les différents écrans d’accueil.
+\end{frame}
+
+\section{Créer un widget d'informations}
+\begin{frame}
+SECTION
+\end{frame}
+
+\begin{frame}
+\frametitle{Les RemoteViews}
+\begin{block}{}
+Les widgets vivent dans une application \emph{hôte}, et il faut un mécanisme pour conserver les droits de l'application dont ils proviennent. Pour cela, leur vue est construire via des \verb!RemoteViews!. Les \verb!RemoteViews! conservent les droits de l'application \emph{invitée}.
+\end{block}
+
+\begin{block}{}
+Les interfaces sont construites par un \verb!BroadcastReceiver!, qui produit les objets \verb!RemoteViews!. Cette objet est maintenue en vie par le système Android.
+\end{block}
+\end{frame}
+
+\begin{frame}
+Ce qu'il faut faire :
+\begin{itemize}
+\item Définir un layout
+\item Créer un fichier XML (AppWidgetProviderInfo) qui décris ses propriétés
+\item Construire un BroadcastReceiver qui est utilisé pour construire l'interface du Widget.
+\item Déclarer le widget dans le Manifest.
+\item (Optionel) Ajouter une activité qui configure le widget.
+\end{itemize}
 \end{frame}
 
 \section{Conclusion}
