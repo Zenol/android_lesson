@@ -14,6 +14,7 @@
 
 \usepackage{listings}
 \usepackage{color}
+\usepackage{enumitem}
 
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
@@ -267,6 +268,88 @@ Cette ligne indique la classe correspondant à l'activité qui doit être exécu
 \end{itemize}
 \end{block}
 \end{frame}
+
+\subsection{Le provider}
+
+\begin{frame}[fragile]
+\frametitle{La classe provider}
+On ajoute une nouvelle classe \verb!MyWidgetProvider!, chargée de construire les vues.
+\begin{exampleblock}{Notre classe provider :}
+\lstset{language=java}
+\begin{lstlisting}
+public class MyWidgetProvider extends AppWidgetProvider {
+
+    public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+        //Effectue la mise a jour de la vue
+    }
+\end{lstlisting}
+\end{exampleblock}
+\end{frame}
+
+
+%Alignement a droite dans les _description_
+\SetLabelAlign{parright}{\parbox[t]{\labelwidth}{\raggedleft#1}}
+
+\setlist[description]{style=multiline,topsep=10pt,leftmargin=5cm,font=\normalfont,%
+    align=parright}
+
+\begin{frame}[fragile]
+\frametitle{La fonction \verb!onUpdate!}
+\begin{block}{Les arguments de cette fonction sont :}
+\begin{description}
+\item[\verb!context!] Informations sur votre application,
+\item[\verb!appWidgetManager!] Le gestionnaire de widgets,
+\item[\verb!appWidgetIds!] La liste de toute les instances de notre widget.
+\end{description}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{La fonction \verb!onUpdate!}
+\begin{block}{Implémentation de \verb!onUpdate!}
+\lstset{language=java}
+\begin{lstlisting}
+// On parcourt tous les widgets.
+final int N = appWidgetIds.length;
+for (int i = 0; i < N; i++) {
+    int appWidgetId = appWidgetIds[i];
+
+    //Construit une nouvelle vue.
+    RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.mywidget_layout);
+
+    // Change le contenu du champ text textField.
+    views.setTextViewText(R.id.textField, "Blabla");
+
+    // Met a jour la vue avec notre nouvelle vue.
+    appWidgetManager.updateAppWidget(appWidgetId, views);
+}
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+\subsection{Le manifest}
+\begin{frame}[fragile]
+\begin{block}{On déclare le provider dans le block \verb!<application></application>!.}
+\lstset{language=xml}
+\begin{lstlisting}
+<receiver android:name="MyWidgetProvider" >
+    <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+    </intent-filter>
+
+    <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/widget_info" />
+</receiver>
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+\subsection{Réagir a un clic}
+
+
+\section{Widgets de collection}
+\subsection{Coming soon...}
 
 \section{Conclusion}
 
