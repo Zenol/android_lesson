@@ -157,14 +157,115 @@ Les interfaces sont construites par un \verb!BroadcastReceiver!, qui produit les
 \end{frame}
 
 \begin{frame}
-Ce qu'il faut faire :
+\frametitle{Créer son widget}
+Pour créer un widget, il faut :
 \begin{itemize}
-\item Définir un layout
+\item Définir son layout
 \item Créer un fichier XML (AppWidgetProviderInfo) qui décris ses propriétés
 \item Construire un BroadcastReceiver qui est utilisé pour construire l'interface du Widget.
 \item Déclarer le widget dans le Manifest.
 \item (Optionel) Ajouter une activité qui configure le widget.
 \end{itemize}
+\end{frame}
+
+\subsection{Le layout}
+
+\begin{frame}
+\frametitle{Les éléments du layout}
+On ne peux utiliser que certains composants graphiques.
+\begin{block}{Ne sont disponible que les layouts :}
+\begin{itemize}
+\item FrameLayout
+\item LinearLayout
+\item RelativeLayout
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Les éléments du layout}
+On ne peux utiliser que certains composants graphiques.
+\begin{block}{Seulement les composants suivants :}
+\begin{itemize}
+\begin{minipage}[t]{0.4\linewidth}
+\item AnalogClock
+\item Button
+\item Chromometer
+\item ImageButton
+\end{minipage}
+\begin{minipage}[t]{0.4\linewidth}
+\item ImageView
+\item ProgressBar
+\item TextView
+\end{minipage}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Mon Layout}
+Par la suite, on supposera avoir décrit l'apparence de notre widget dans un fichier \verb!mywidget\_layout.xml!.
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Les actions disponibles}
+\begin{block}{OnClickListener}
+La seul interaction possible avec la vue s'effectue via un \verb!OnClickListener!. Ce listener peut être lier à un \emph{composant graphique}, et déclenché par l'utilisateur au moment du clic sur ce \emph{composant}.
+\end{block}
+\end{frame}
+
+\subsection{Le XML descriptif}
+
+\begin{frame}[fragile]
+\frametitle{Description du Widget}
+
+\begin{exampleblock}{On créer un fichier \verb!mywidget\_info.xml! dans \verb!/res/xml/! contenant : }
+\lstset{language=xml}
+\begin{lstlisting}
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth="40dp"
+    android:minHeight="40dp"
+    android:updatePeriodMillis="86400000"
+    android:previewImage="@drawable/preview"
+    android:initialLayout="@layout/mywidget_layout"
+    android:resizeMode="horizontal|vertical"
+    android:widgetCategory="home_screen">
+</appwidget-provider>
+\end{lstlisting}
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Description du Widget}
+
+\begin{exampleblock}{Si l'on veux une activité de configuration : }
+\lstset{language=xml}
+\begin{lstlisting}
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    ...
+    android:configure="com.example.android.MyWidgetConfigure">
+</appwidget-provider>
+\end{lstlisting}
+\end{exampleblock}
+
+\begin{block}{}
+Cette ligne indique la classe correspondant à l'activité qui doit être exécute.
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Description du Widget}
+\begin{block}{Description des attributs.}
+\begin{itemize}
+\item \verb!minWidth! and \verb!minHeight! contrôlent la taille minimale,
+\item \verb!updatePeriodMillis! définit le temps de rafraichissement,
+\item \verb!initialLayout! indique le layout de votre widget,
+\item \verb!reviewImage! indique l'image qui sera affiché dans la liste des widgets,
+\item \verb!resizeMode! indique dans quels directions l'on peux redimensionner le widget,
+\item \verb!widgetCategory! indique dans quels zone le widget peux être placé (home\_screen et keyguard).
+\end{itemize}
+\end{block}
 \end{frame}
 
 \section{Conclusion}
