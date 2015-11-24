@@ -14,7 +14,6 @@
 
 \usepackage{listings}
 \usepackage{color}
-\usepackage{enumitem}
 
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
@@ -159,18 +158,24 @@ Du à leur contexte d'utilisation, les widgets ont des limitations technique sur
 
 \begin{frame}
 \frametitle{Les RemoteViews}
-\begin{block}{}
+\begin{center}
+\includegraphics[scale=0.05]{remote.png}
+\end{center}
+\begin{block}{RemoteViews}
 Les widgets vivent dans une application \emph{hôte}, et il faut un mécanisme pour conserver les droits de l'application dont ils proviennent. Pour cela, leur vue est construire via des \verb!RemoteViews!. Les \verb!RemoteViews! conservent les droits de l'application \emph{invitée}.
 \end{block}
 
-\begin{block}{}
+\begin{block}{BroadcastReceiver}
 Les interfaces sont construites par un \verb!BroadcastReceiver!, qui produit les objets \verb!RemoteViews!. Cette objet est maintenue en vie par le système Android.
 \end{block}
 \end{frame}
 
 \begin{frame}
 \frametitle{Créer son widget}
-Pour créer un widget, il faut :
+\begin{center}
+\includegraphics[scale=0.25]{todolist.png}
+\end{center}
+\begin{block}{Pour créer un widget, il faut :}
 \begin{itemize}
 \item Définir son layout
 \item Créer un fichier XML (AppWidgetProviderInfo) qui décris ses propriétés
@@ -178,13 +183,18 @@ Pour créer un widget, il faut :
 \item Déclarer le widget dans le Manifest.
 \item (Optionel) Ajouter une activité qui configure le widget.
 \end{itemize}
+\end{block}
+
 \end{frame}
 
 \subsection{Le layout}
 
 \begin{frame}
 \frametitle{Les éléments du layout}
-On ne peux utiliser que certains composants graphiques.
+\begin{center}
+\includegraphics[scale=0.2]{container.jpg}
+\end{center}
+On ne peux utiliser que certains containers.
 \begin{block}{Ne sont disponible que les layouts :}
 \begin{itemize}
 \item FrameLayout
@@ -196,6 +206,9 @@ On ne peux utiliser que certains composants graphiques.
 
 \begin{frame}
 \frametitle{Les éléments du layout}
+\begin{center}
+\includegraphics[scale=0.5]{comps.png}
+\end{center}
 On ne peux utiliser que certains composants graphiques.
 \begin{block}{Seulement les composants suivants :}
 \begin{itemize}
@@ -222,6 +235,9 @@ Par la suite, on supposera avoir décrit l'apparence de notre widget dans un fic
 
 \begin{frame}
 \frametitle{Les actions disponibles}
+\begin{center}
+\includegraphics[scale=0.35]{listener.jpg}
+\end{center}
 \begin{block}{OnClickListener}
 La seul interaction possible avec la vue s'effectue via un \verb!OnClickListener!. Ce listener peut être lier à un \emph{composant graphique}, et déclenché par l'utilisateur au moment du clic sur ce \emph{composant}.
 \end{block}
@@ -298,20 +314,17 @@ public class MyWidgetProvider extends AppWidgetProvider {
 \end{frame}
 
 
-%Alignement a droite dans les _description_
-\SetLabelAlign{parright}{\parbox[t]{\labelwidth}{\raggedleft#1}}
-
-\setlist[description]{style=multiline,topsep=10pt,leftmargin=5cm,font=\normalfont,%
-    align=parright}
-
 \begin{frame}[fragile]
 \frametitle{La fonction \verb!onUpdate!}
+\begin{center}
+\includegraphics[scale=1]{update.jpg}
+\end{center}
 \begin{block}{Les arguments de cette fonction sont :}
-\begin{description}
-\item[\verb!context!] Informations sur votre application,
-\item[\verb!appWidgetManager!] Le gestionnaire de widgets,
-\item[\verb!appWidgetIds!] La liste de toute les instances de notre widget.
-\end{description}
+\begin{itemize}
+\item[] {\color{blue} \verb!context!} -- Informations sur votre application,
+\item[] {\color{blue} \verb!appWidgetManager!} -- Le gestionnaire de widgets,
+\item[] {\color{blue} \verb!appWidgetIds!} -- La liste de toute les instances de notre widget.
+\end{itemize}
 \end{block}
 \end{frame}
 
@@ -373,7 +386,7 @@ Pour me contacter : jeremy.cochoy@u-psud.fr, merci et à bientôt.
 \medskip
 \medskip
 
-\includegraphics[scale=0.18]{android.jpg}
+\includegraphics[scale=0.3]{android_cat.jpg}
 \end{center}
 \end{frame}
 
