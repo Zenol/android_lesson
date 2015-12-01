@@ -368,7 +368,7 @@ for (int i = 0; i < N; i++) {
 
     <meta-data
         android:name="android.appwidget.provider"
-        android:resource="@xml/widget_info" />
+        android:resource="@xml/mywidget_info" />
 </receiver>
 \end{lstlisting}
 \end{block}
@@ -390,7 +390,7 @@ L'intention \verb!ACTION\_APPWIDGET\_UPDATE! permet de mettre à jour la vue d'u
 \begin{block}{Lier un clic à une mise à jours (dans onUpdate)}
 \begin{lstlisting}
 // Creation de notre intention
-Intent intent = new Intent(context, ShowArticles.class);
+Intent intent = new Intent();
 
 //Intent de type mise a jours de widget
 intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
