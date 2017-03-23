@@ -44,7 +44,7 @@
 
 \title{Android - Fragments, et App Bars}
 \author{Jérémy S. Cochoy}
-\institute{INRIA Paris-Saclay | jeremy.cochoy@u-psud.fr}
+\institute{INRIA Paris-Saclay | jeremy.cochoy@gmail.com}
 \date{Novembre 2015}
 
 
@@ -72,34 +72,6 @@
 \end{center}
 \end{block}
 
-\end{frame}
-
-\section{Appareille Photo - Correction}
-
-\begin{frame}
-\frametitle{TP Appareille Photo}
-\begin{center}
-\includegraphics[scale=0.4]{appareil-photo-vintage.jpg}
-\end{center}
-\begin{block}{}
-\begin{center}
-Correction du TP : Appareille Photo
-\end{center}
-\end{block}
-\end{frame}
-
-\section{Tic Tac Toe}
-
-\begin{frame}
-\frametitle{TP : Réalisez un Tic Tac Toe}
-\begin{center}
-\includegraphics[scale=0.45]{tictactoe.jpg}
-\end{center}
-\begin{block}{}
-\begin{center}
-Commencez le TP Tic-Tac-Toe.
-\end{center}
-\end{block}
 \end{frame}
 
 \section{MVC}
@@ -377,7 +349,10 @@ Avec la méthode \verb!replace()! au lieu de \verb!add()!.
 \end{block}
 \pause
 \begin{block}{Récupérer le fragment remplacé}
-Souvent, on souhaite permettre à l'utilisateur "d'annuler" la transaction, et récupérer le fragment précédent. Pour ça il suffit d’appeler \verb!addToBackStack()! durant la transaction.
+Souvent, on souhaite permettre à l'utilisateur "d'annuler"
+la transaction, et récupérer le fragment précédent.
+Pour ça il suffit d’appeler \verb!addToBackStack()! durant
+la transaction.
 \end{block}
 \pause
 \begin{block}{Vie d'un fragment}
@@ -623,7 +598,7 @@ public class MyActivity extends AppCompatActivity {
 \begin{block}{Il faut le support de la fonctionnalité.}
 Pour ça, il vous faut éventuellement installer la bibliothèque v7 appcompat, si ce n'est pas déjà fait.
 \end{block}
-\pause
+
 \begin{block}{Et hériter de la bonne classe Activity.}
 \begin{lstlisting}
 public class MyActivity extends AppCompatActivity {
@@ -764,18 +739,9 @@ public boolean onOptionsItemSelected(MenuItem item) {
 
 \end{frame}
 
-\section{Conclusion}
-
-\begin{frame}
-\frametitle{Conclusion}
-\begin{block}{Avec les fragments et les ToolBar,}
-vous disposez de tous les outils pour réaliser une interface professionnelle, dynamique, et digne d'une application du store. Gardez ces idées en tête pour votre projet.
-\end{block}
-\end{frame}
-
 \begin{frame}
 \begin{center}
-Pour me contacter : jeremy.cochoy@u-psud.fr, merci et à bientôt.
+Pour me contacter : jeremy.cochoy@gmail.com, merci et à bientôt.
 
 \medskip
 \medskip
