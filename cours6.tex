@@ -42,7 +42,7 @@
 
 \begin{document}
 
-\title{Android - Taches asynchrones}
+\title{Android - Tâches asynchrones}
 \author{Jérémy S. Cochoy}
 \institute{INRIA Paris-Saclay | jeremy.cochoy@gmail.com}
 \date{Decembre 2015}
@@ -77,8 +77,8 @@
 \begin{center}
 \includegraphics[scale=0.07]{async.jpg}
 \end{center}
-\begin{block}{Pour effectuer une tache asynchrone...}
-Pour exécuter une tache de quelques secondes, on utilise la classe \verb!AsyncTask! qui contiendras le code a exécuter en parallèle de l'activité en cours.
+\begin{block}{Pour effectuer une tâche asynchrone...}
+Pour exécuter une tâche de quelques secondes, on utilise la classe \verb!AsyncTask! qui contiendra le code à exécuter en parallèle de l'activité en cours.
 \end{block}
 \pause
 \begin{block}{}
@@ -96,11 +96,11 @@ C'est une classe générique!
 \begin{center}
 \includegraphics[scale=0.5]{generic.jpg}
 \end{center}
-\begin{block}{Les types utilisé par \verb!AsyncTask! sont :}
+\begin{block}{Les types utilisés par \verb!AsyncTask! sont :}
 
 \begin{itemize}
-\item Params - Le type des arguments passer au thread lors de son lancement.
-\item Progress - Le type de l'unité de mesure de la progression communiqué durant le calcul en arrière plan.
+\item Params - Le type des arguments passés au thread lors de son lancement.
+\item Progress - Le type de l'unité de mesure de la progression communiqué durant le calcul en arrière-plan.
 \item Result - Le type du résultat renvoyé après le calcul.
 \end{itemize}
 
@@ -111,11 +111,11 @@ C'est une classe générique!
 \begin{frame}
 \frametitle{\verb!doInBackground()!}
 \begin{block}{Où placer la tâche couteuse ?}
-La tâche à effectuer en arrière plan se place dans \verb!doInBackground!.
+La tâche à effectuer en arrière-plan se place dans \verb!doInBackground!.
 \end{block}
 \pause
 \begin{block}{Arguments et retour}
-Elle prend un(des) argument(s) de type \emph{Params} et renvoi un résultat de type \emph{Result}.
+Elle prend un(des) argument(s) de type \emph{Params} et renvoie un résultat de type \emph{Result}.
 \end{block}
 \pause
 \begin{block}{VarArgs}
@@ -126,11 +126,11 @@ Le nombre d'arguments est variable. On les récupère sous la forme d'un tableau
 \begin{frame}
 \frametitle{\verb!doInBackground()!}
 \begin{block}{\verb!La méthode isCancelled()!}
-Lors de l'exécution de votre tache, c'est à vous de réagir dans le cas ou celle ci est annulé dans l'activité principale via la méthode \verb!cancel()!. Pour cela regardez la valeur de retour de \verb!isCancelled()!.
+Lors de l'exécution de votre tâche, c'est à vous de réagir dans le cas où celle-ci est annulée dans l'activité principale via la méthode \verb!cancel()!. Pour cela, regardez la valeur de retour de \verb!isCancelled()!.
 \end{block}
 \pause
 \begin{block}{La méthode \verb!publishProgress!}
-A chaque modification du niveau de progression de votre tache, c'est à vous de communiquer cette information via \verb!publishProgress()!.
+A chaque modification du niveau de progression de votre tâche, c'est à vous de communiquer cette information via \verb!publishProgress()!.
 \end{block}
 \end{frame}
 
@@ -157,7 +157,7 @@ protected Long doInBackground(URL... urls)
 \begin{frame}[fragile]
 \frametitle{\verb!onProgressUpdate()!}
 \begin{block}{La méthode \verb!onProgressUpdate()!}
-C'est la méthode appelée lors d'une évolution de la progression. Elle s'exécute dans le thread de l'activité, et peux donc accéder à ses variables membres.
+C'est la méthode appelée lors d'une évolution de la progression. Elle s'exécute dans le thread de l'activité et peut donc accéder à ses variables membres.
 \end{block}
 \begin{exampleblock}{Exemple de \verb!onProgressUpdate()!.}
 \begin{lstlisting}
@@ -207,7 +207,7 @@ protected void onPostExecute(Long result)
 \frametitle{Exécuter notre tâche}
 
 \begin{block}{\verb!execute()!}
-Pour exécuter notre tache, on créer une instance de notre classe, et l'on appel la méthode \verb!execute()!.
+Pour exécuter notre tâche, on crée une instance de notre classe et on appelle la méthode \verb!execute()!.
 \end{block}
 \begin{exampleblock}{Exemple :}
 \begin{lstlisting}
@@ -231,8 +231,8 @@ new DownloadFilesTask().execute(url1, url2, url3);
 \frametitle{Thread et Handler}
 
 \begin{block}{Thread}
-La classe \verb!Thread! permet l'exécution asynchrone d'une tache, pouvant se maintenir durant tout le temps de vie de l'application.
-On peux dériver \verb!Thread! et surcharger \verb!run()!, ou bien passer un objet de type \verb!Runnable!.
+La classe \verb!Thread! permet l'exécution asynchrone d'une tâche pouvant se maintenir durant tout le temps de vie de l'application.
+On peut dériver \verb!Thread! et surcharger \verb!run()!, ou bien passer un objet de type \verb!Runnable!.
 \end{block}
 
 \begin{block}{Handler}
@@ -247,10 +247,10 @@ La classe \verb!Handler! permet la communication entre les threads (notamment en
 \includegraphics[scale=0.25]{executor.jpg}
 \end{center}
 \begin{block}{Executor}
-Pour gérer l'exécution de plusieurs taches sans devoir explicitement créer les threads, jetez un œil à \verb!Executor!.
+Pour gérer l'exécution de plusieurs tâches sans devoir explicitement créer les threads, jetez un œil à \verb!Executor!.
 \end{block}
 \begin{block}{ThreadPoolExecutor}
-Si vous avez un nombre important de taches a exécuter, jetez un œil à \verb!ThreadPoolExecutor!.
+Si vous avez un nombre important de tâches à exécuter, jetez un œil à \verb!ThreadPoolExecutor!.
 \end{block}
 
 \end{frame}
@@ -261,7 +261,7 @@ Si vous avez un nombre important de taches a exécuter, jetez un œil à \verb!T
 \begin{frame}
 \frametitle{Conclusion}
 \begin{block}{Les tâches asynchrones}
-Les tâches asynchrones vous permettent d'effectuer des opérations couteuses comme le téléchargement de fichiers, des requêtes à une base de donnée, des calculs couteux en performance, etc. sans provoquer le blocage de votre activité.
+Les tâches asynchrones vous permettent d'effectuer des opérations couteuses comme le téléchargement de fichiers, des requêtes à une base de données, des calculs couteux en performance, etc. sans provoquer le blocage de votre activité.
 \end{block}
 \end{frame}
 
