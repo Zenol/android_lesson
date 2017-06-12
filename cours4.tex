@@ -44,8 +44,8 @@
 
 \title{Android - Fragments, et App Bars}
 \author{Jérémy S. Cochoy}
-\institute{INRIA Paris-Saclay | jeremy.cochoy@u-psud.fr}
-\date{Novembre 2015}
+\institute{INRIA Paris-Saclay | jeremy.cochoy@gmail.com}
+\date{Mars 2017}
 
 
 \begin{frame}
@@ -74,34 +74,6 @@
 
 \end{frame}
 
-\section{Appareille Photo - Correction}
-
-\begin{frame}
-\frametitle{TP Appareille Photo}
-\begin{center}
-\includegraphics[scale=0.4]{appareil-photo-vintage.jpg}
-\end{center}
-\begin{block}{}
-\begin{center}
-Correction du TP : Appareille Photo
-\end{center}
-\end{block}
-\end{frame}
-
-\section{Tic Tac Toe}
-
-\begin{frame}
-\frametitle{TP : Réalisez un Tic Tac Toe}
-\begin{center}
-\includegraphics[scale=0.45]{tictactoe.jpg}
-\end{center}
-\begin{block}{}
-\begin{center}
-Commencez le TP Tic-Tac-Toe.
-\end{center}
-\end{block}
-\end{frame}
-
 \section{MVC}
 
 \begin{frame}
@@ -127,7 +99,7 @@ C'est l'interface qu'affiche votre application. Dans un projet Android, il s'agi
 \includegraphics[scale=0.2]{data.jpeg}
 \end{center}
 \begin{block}{Le modèle}
-Une ou des classes qui gèrent l'accès à vos données. Elles peuvent provenir d'un accès distant, un serveur ftp, un fichier local, une base de donnée locale(SQLite) ou distante (MySQL)...
+Une ou des classes qui gèrent l'accès à vos données. Elles peuvent provenir d'un accès distant, un serveur ftp, un fichier local, une base de données locale (SQLite) ou distante (MySQL)...
 \end{block}
 \end{frame}
 
@@ -137,11 +109,11 @@ Une ou des classes qui gèrent l'accès à vos données. Elles peuvent provenir 
 \includegraphics[scale=0.2]{controler.jpeg}
 \end{center}
 \begin{block}{Le contrôleur}
-C'est essentiellement le code de vos activités : le code formate les données, et les envois dans la vue. Le code gère les actions de l’utilisateur et réagis en conséquences (appel d'une nouvelle activité pour changer la vue, prise de photo, changement des images affichés...).
+C'est essentiellement le code de vos activités : le code formate les données, et les envoie dans la vue. Le code gère les actions de l'utilisateur et réagit en conséquence (appel d'une nouvelle activité pour changer la vue, prise de photo, changement des images affichées...).
 \end{block}
 \end{frame}
 
-\subsection{Intéret ?}
+\subsection{Intérêt ?}
 
 \begin{frame}
 \frametitle{Résumé}
@@ -150,9 +122,9 @@ C'est essentiellement le code de vos activités : le code formate les données, 
 \end{center}
 \begin{block}{Modèle MVC :}
 \begin{itemize}
-\item Modèle (Model) : Ce que l'on veut afficher
-\item Vue (View) : Comment l'afficher
-\item Controleur (Controler) : Formate les données pour les afficher, et gère les événements tels que les entrées utilisateur.
+\item Modèle (Model) : Ce qu'on veut afficher.
+\item Vue (View) : Comment l'afficher.
+\item Contrôleur (Controler) : Formate les données pour les afficher et gère les événements tels que les entrées utilisateur.
 \end{itemize}
 \end{block}
 \end{frame}
@@ -161,15 +133,15 @@ C'est essentiellement le code de vos activités : le code formate les données, 
 \begin{frame}
 \frametitle{Avantages du MVC?}
 \begin{block}{Indépendance}
-Les 3 blocs sont indépendant et communique via une interface claire et précise.
+Les 3 blocs sont indépendants et communiquent via une interface claire et précise.
 \end{block}
 \pause
-\begin{block}{Substitution de modèle}
-Il est possible de remplacer un modèle "fichier locale" par un modèle "base de donnée distante", avec un minimum de modification de code, et sans modification sur la vue.
+\begin{block}{Substitution du modèle}
+Il est possible de remplacer un modèle "fichier local" par un modèle "base de données distante", avec un minimum de modification du code, et sans modification de la vue.
 \end{block}
 \pause
-\begin{block}{Substitution de vue}
-En modifiant uniquement l'XML, on peux revoir le design de l'interface.
+\begin{block}{Substitution de la vue}
+En modifiant uniquement l'XML, on peut revoir le design de l'interface.
 \end{block}
 \pause
 \begin{alertblock}{Dark side}
@@ -211,7 +183,7 @@ C'est une partie modulaire d'une activité.
 \frametitle{Fragments}
 
 \begin{block}{Pourquoi utiliser des fragments ?}
-Pour permettre a nos applications de s'adapter aux supports physique.
+Pour permettre à nos applications de s'adapter aux supports physiques.
 \end{block}
 
 \begin{center}
@@ -260,13 +232,13 @@ public class ArticleFragment extends Fragment {
 \begin{frame}
 \frametitle{Ajouter un fragment à son activité}
 \begin{block}{Ajouter un fragment via XML}
-On peux ajouter du code XML dans layout-large, et un autre dans layout.
+On peut ajouter du code XML dans layout-large, et un autre dans layout.
 \end{block}
 \begin{center}
 \includegraphics[scale=0.05]{xml-file.png}
 \end{center}
 \begin{block}{Ajouter un fragment via l'API}
-A l’exécution, on peux déterminer la résolution de l’écran et dynamiquement remodeler l'interface.
+A l'exécution, on peut déterminer la résolution de l'écran et remodeler dynamiquement l'interface.
 \end{block}
 \begin{center}
 \includegraphics[scale=0.05]{api.png}
@@ -303,11 +275,11 @@ A l’exécution, on peux déterminer la résolution de l’écran et dynamiquem
 \frametitle{Ajouter un fragment à l'exécution}
 
 \begin{block}{\verb!FragmentManager!}
-Il nous faut un gestionaire de fragment (\verb!FragmentManager!) pour construire un \verb!FragmentTansaction! qui lui pouras ajouter / supprimer / remplacer des fragments dans notre activité.
+Il nous faut un gestionnaire de fragment (\verb!FragmentManager!) pour construire un \verb!FragmentTansaction! qui, lui, pourra ajouter / supprimer / remplacer des fragments dans notre activité.
 \end{block}
 \pause
-\begin{alertblock}{Il faut un containeur}
-Il faut un containeur de type \verb!View! pour y placer nos fragments. Un simple
+\begin{alertblock}{Il faut un container}
+Il faut un container de type \verb!View! pour y placer nos fragments. Un simple
 \lstset{language=xml}
 \begin{lstlisting}
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -330,13 +302,13 @@ Dans \verb!onCreate!, on ajoute un fragment de la façon suivante :
 \end{block}
 \lstset{language=java}
 \begin{lstlisting}
-// On verifie que l'on trouve bien notre container.
+// On verifie qu'on trouve bien notre container.
 if (findViewById(R.id.fragment_container) != null) {
 // On verifie que c'est le premier lancement de l'activite.
 if (savedInstanceState != null) {
   return;
 }
-// On creer le fragment a placer.
+// On cree le fragment a placer.
 HeadlinesFragment firstFragment = new HeadlinesFragment();          
 // On transmet d'eventuels arguments.
 firstFragment.setArguments(getIntent().getExtras());         
@@ -350,7 +322,7 @@ getSupportFragmentManager().beginTransaction()
 \begin{frame}[fragile]
 \frametitle{Ajouter un fragment à l'exécution}
 
-\begin{block}{Détaille de la transaction :}
+\begin{block}{Détail de la transaction :}
 \begin{lstlisting}
 //Recuperation du manager
 FragmentManager manager = getSupportFragmentManager();
@@ -364,7 +336,7 @@ transaction.commit();
 \end{lstlisting}
 \end{block}
 \begin{exampleblock}{}
-Parce que son ajout est dynamique, ce fragment pourras être retiré ou remplacé.
+Parce que son ajout est dynamique, ce fragment pourra être retiré ou remplacé.
 \end{exampleblock}
 \end{frame}
 
@@ -377,11 +349,14 @@ Avec la méthode \verb!replace()! au lieu de \verb!add()!.
 \end{block}
 \pause
 \begin{block}{Récupérer le fragment remplacé}
-Souvent, on souhaite permettre à l'utilisateur "d'annuler" la transaction, et récupérer le fragment précédent. Pour ça il suffit d’appeler \verb!addToBackStack()! durant la transaction.
+Souvent, on souhaite permettre à l'utilisateur "d'annuler"
+la transaction et récupérer le fragment précédent.
+Pour ça, il suffit d'appeler \verb!addToBackStack()! durant
+la transaction.
 \end{block}
 \pause
 \begin{block}{Vie d'un fragment}
-Si un fragment est poussé sur la pile de retour, alors il est \emph{stoppé}. Après un retour en arière, il passera dans l'état \emph{redémarré}. Sinon, il est \emph{détruit}.
+Si un fragment est poussé sur la pile de retour, alors il est \emph{stoppé}. Après un retour en arrière, il passera dans l'état \emph{redémarré}. Sinon, il est \emph{détruit}.
 \end{block}
 
 \end{frame}
@@ -407,7 +382,7 @@ newFragment.setArguments(args);
 
 \begin{exampleblock}{Création d'un nouveau fragment}
 \begin{lstlisting}
-//Commence une transaction
+// Commence une transaction
 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 // Remplace le fragment
 transaction.replace(R.id.fragment_container, newFragment);
@@ -420,7 +395,7 @@ transaction.commit();
 
 
 \begin{block}{\verb!addToBackStack()!}
-\verb!addToBackStack()! prend en argument une chaîne de caractère optionnelle qui permet de donner un identifiant unique à la transaction, pour effectuer des opérations avancées.
+\verb!addToBackStack()! prend en argument une chaîne de caractères optionnelle qui permet de donner un identifiant unique à la transaction, pour effectuer des opérations avancées.
 \end{block}
 
 \end{frame}
@@ -431,11 +406,11 @@ transaction.commit();
 \begin{frame}
 \frametitle{Communiquer entre fragments}
 \begin{block}{Comment ?}
-La communication se fait vià l'activité, en lui imposant d'implémenter une \emph{interface}.
+La communication se fait via l'activité en lui imposant d'implémenter une \emph{interface}.
 \end{block}
 \pause
 \begin{block}{}
-On récupère un pointeur vers l'activité, que l'on downcast vers notre interface. Il y à donc un certains nombre de précautions à prendre.
+On récupère un pointeur vers l'activité que l'on downcast vers notre interface. Il y a donc un certain nombre de précautions à prendre.
 \end{block}
 \end{frame}
 
@@ -456,7 +431,7 @@ public class HeadlinesFragment extends ListFragment {
 	// Variable global qui contiendra un pointeur vers l'Activity
     OnHeadlineSelectedListener mCallback;
 
-    // L'Activity contenant le fragment devras implementer l'interface :
+    // L'Activity contenant le fragment devra implementer l'interface :
     public interface OnHeadlineSelectedListener {
         public void onArticleSelected(int position);
     }
@@ -470,7 +445,7 @@ public class HeadlinesFragment extends ListFragment {
 
 \begin{frame}[fragile]
 \frametitle{Forcer une interface pour notre activité}
-\begin{block}{... puis l'on récupère un pointeur vers l'activité, et on s'assure qu'elle implémente bien notre interface.}
+\begin{block}{... puis on récupère un pointeur vers l'activité, et on s'assure qu'elle implémente bien notre interface.}
 \begin{lstlisting}
   @Override
   public void onAttach(Activity activity) {
@@ -491,11 +466,11 @@ public class HeadlinesFragment extends ListFragment {
     
 \begin{frame}[fragile]
 \frametitle{Exemple de communication}
-\begin{exampleblock}{Un example d'utilisation de l'interface :}
+\begin{exampleblock}{Un exemple d'utilisation de l'interface :}
 \begin{lstlisting}
 @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        // Appel la fonction de l'Activity.
+        // Appelle la fonction de l'Activity.
         mCallback.onArticleSelected(position);
     }
 \end{lstlisting}
@@ -511,7 +486,7 @@ public static class MainActivity extends Activity
     ...
     
     public void onArticleSelected(int position) {
-        // L'utilisateur a choisit un item dans la liste
+        // L'utilisateur a choisi un item dans la liste
         // On effectue le necessaire pour afficher l'article correspondant.
     }
 }
@@ -522,7 +497,7 @@ public static class MainActivity extends Activity
 
 \begin{frame}[fragile]
 \frametitle{Pour gérer un mode tablette et un mode mobile...}
-\begin{block}{L'activité qui parlais à l'oreille des fragments...}
+\begin{block}{L'activité qui parlait à l'oreille des fragments...}
 \begin{lstlisting}
 public void onArticleSelected(int position) {
 
@@ -560,7 +535,7 @@ public void onArticleSelected(int position) {
   args.putInt(ArticleFragment.ARG_POSITION, position);
   newFragment.setArguments(args);
 
-  //Et l'on effectue la transaction...
+  //Et on effectue la transaction...
   FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
   transaction.replace(R.id.fragment_container, newFragment);
@@ -623,7 +598,7 @@ public class MyActivity extends AppCompatActivity {
 \begin{block}{Il faut le support de la fonctionnalité.}
 Pour ça, il vous faut éventuellement installer la bibliothèque v7 appcompat, si ce n'est pas déjà fait.
 \end{block}
-\pause
+
 \begin{block}{Et hériter de la bonne classe Activity.}
 \begin{lstlisting}
 public class MyActivity extends AppCompatActivity {
@@ -662,7 +637,7 @@ public class MyActivity extends AppCompatActivity {
 \lstset{language=java}
 \end{block}
 \begin{block}{}
-Comme c'est une barre d'application, on veux la positionner en haut de l'application.
+Comme c'est une barre d'application, on veut la positionner en haut de l'application.
 \end{block}
 \end{frame}
 
@@ -682,8 +657,8 @@ protected void onCreate(Bundle savedInstanceState) {
 \end{lstlisting}
 \lstset{language=java}
 \end{block}
-\begin{exampleblock}{Contenue de la barre :}
-Par défaut, on y trouve le titre de l'application, et un menu déroulant avec pour seul élément "Settings".
+\begin{exampleblock}{Contenu de la barre :}
+Par défaut, on y trouve le titre de l'application et un menu déroulant avec pour seul élément "Settings".
 \end{exampleblock}
 \end{frame}
 
@@ -692,14 +667,14 @@ Par défaut, on y trouve le titre de l'application, et un menu déroulant avec p
 \begin{frame}
 \frametitle{Personnalisez votre AppBar}
 \begin{block}{Une vue XML}
-  Les boutons et autres objets sont stocké dans une vue, dans \verb!res/menu!.
+  Les boutons et autres objets sont stockés dans une vue, dans \verb!res/menu!.
 \end{block}
 \pause
 \begin{block}{Ajouter un bouton}
   Pour chaque élément à ajouter, on place un élément \verb!item!.
 \end{block}
 \pause
-\begin{block}{Ce que l'on veux :}
+\begin{block}{Ce que l'on veut :}
   \begin{center}
   \includegraphics[scale=0.2]{appbar_modif.png}
   \end{center}
@@ -708,7 +683,7 @@ Par défaut, on y trouve le titre de l'application, et un menu déroulant avec p
 
 \begin{frame}[fragile]
 \frametitle{Personnalisez votre AppBar}
-\begin{exampleblock}{Example d'AppBar}
+\begin{exampleblock}{Exemple d'AppBar}
 \lstset{language=xml}
 \begin{lstlisting}
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
@@ -733,7 +708,7 @@ Par défaut, on y trouve le titre de l'application, et un menu déroulant avec p
 \subsection{Réagir aux actions}
 
 \begin{frame}
-\frametitle{Comment réagir à un click?}
+\frametitle{Comment réagir à un clic ?}
 \begin{block}{Au moment où l'utilisateur clique :}
 La méthode \verb!onOptionsItemSelected()! est appelé, avec en argument un \verb!MenuItem! correspondant à l'item cliqué. La méthode \verb!MenuItem.getItemId()! permet de récupérer l'ID de l'élément.
 \end{block}
@@ -755,7 +730,7 @@ public boolean onOptionsItemSelected(MenuItem item) {
             return true;
 
         default:
-            // Action non reconnus, dans le doute on laisse faire la classe parente.
+            // Action non reconnue, dans le doute on laisse faire la classe parente.
             return super.onOptionsItemSelected(item);
     }
 }
@@ -764,18 +739,9 @@ public boolean onOptionsItemSelected(MenuItem item) {
 
 \end{frame}
 
-\section{Conclusion}
-
-\begin{frame}
-\frametitle{Conclusion}
-\begin{block}{Avec les fragments et les ToolBar,}
-vous disposez de tous les outils pour réaliser une interface professionnelle, dynamique, et digne d'une application du store. Gardez ces idées en tête pour votre projet.
-\end{block}
-\end{frame}
-
 \begin{frame}
 \begin{center}
-Pour me contacter : jeremy.cochoy@u-psud.fr, merci et à bientôt.
+Pour me contacter : jeremy.cochoy@gmail.com, merci et à bientôt.
 
 \medskip
 \medskip

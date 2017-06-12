@@ -44,8 +44,8 @@
 
 \title{Android - Les Widgets}
 \author{Jérémy S. Cochoy}
-\institute{INRIA Paris-Saclay | jeremy.cochoy@u-psud.fr}
-\date{Novembre 2015}
+\institute{INRIA Paris-Saclay | jeremy.cochoy@gmail.com}
+\date{Avril 2017}
 
 
 \begin{frame}
@@ -111,14 +111,14 @@
 Ces widgets servent à afficher des informations utiles à l'utilisateur, et suivent leur évolution au cours du temps. De bons exemples sont les widgets météo, les horloges, les traqueurs de résultats sportifs...
 \end{frame}
 
-\subsection{Widget de collection}
+\subsection{Widgets de collection}
 \begin{frame}
-\frametitle{Widgets de collections}
+\frametitle{Widgets de collection}
 \begin{center}
 \includegraphics[scale=0.4]{widgets_collection_gmail.png}
 \end{center}
 
-Ils sont spécialisés dans l'affichage de collections d'éléments d'un même type, comme des collections d'e-mail, de messages, d'images ou encore d’articles. Ces widgets se concentrent sur deux opérations : parcourir la collection, et ouvrir un élément de la collection pour visualiser l'information complète (contenu d'un e-mail).
+Ils sont spécialisés dans l'affichage de collections d'éléments d'un même type, comme des collections d'e-mails, de messages, d'images ou encore d'articles. Ces widgets se concentrent sur deux opérations : parcourir la collection, et ouvrir un élément de la collection pour visualiser l'information complète (contenu d'un e-mail).
 \end{frame}
 
 \subsection{Widget de contrôle}
@@ -128,7 +128,7 @@ Ils sont spécialisés dans l'affichage de collections d'éléments d'un même t
 \includegraphics[scale=0.4]{widgets_control.png}
 \end{center}
 
-Le but des widgets de contrôle est de permettre l'utilisation rapide d'une fonction très utilisé depuis l'écran d'acceuil, sans avoir besoin de lancer une application. Un exemple typique proviens des lecteurs de musique, qui proposent de mettre à pause la lecture, ou de passer a la musique suivante, sans devoir ouvrir l'application de lecture.
+Le but des widgets de contrôle est de permettre l'utilisation rapide d'une fonction très utilisée depuis l'écran d'accueil, sans avoir besoin de lancer une application. Un exemple typique provient des lecteurs de musique, qui proposent de mettre en pause la lecture, ou de passer à la musique suivante sans devoir ouvrir l'application de lecture.
 \end{frame}
 
 \subsection{Widget de hybride}
@@ -138,10 +138,10 @@ Le but des widgets de contrôle est de permettre l'utilisation rapide d'une fonc
 \includegraphics[scale=0.3]{widgets_hybrid.png}
 \end{center}
 
-La plupart des widgets rentrent dans une des catégories précédentes, mais il peut arriver que l’emploie de fonctions provenant des différentes catégories soit nécessaire. Dans ce cas, il est recommander de se concentrer sur l'interface sur l'un des types précédent.
+La plupart des widgets rentrent dans une des catégories précédentes, mais il peut arriver que l'emploi de fonctions provenant de différentes catégories soit nécessaire. Dans ce cas, il est recommandé de se concentrer sur l'interface d'un des types précédent.
 
-\begin{exampleblock}{Un lecteur de musique}
-est avant tout un widget de contrôle, mais il permet aussi de suivre le nom du morceau joué, et utilise donc quelques composants d'un widget d'information.
+\begin{exampleblock}{Un lecteur de musique...}
+...est avant tout un widget de contrôle, mais il permet aussi de suivre le nom du morceau lu, et utilise donc quelques composants d'un widget d'information.
 \end{exampleblock}
 \end{frame}
 
@@ -150,7 +150,12 @@ est avant tout un widget de contrôle, mais il permet aussi de suivre le nom du 
 \begin{center}
 \includegraphics[scale=0.2]{widgets_gestures.png}
 \end{center}
-Du à leur contexte d'utilisation, les widgets ont des limitations technique sur la façon dont un utilisateur inter-réagira avec. Par exemple, un widget présent sur l'écran d’accueil ne peux accéder qu'aux pressions de l'utilisateur, et au slide vertical. Le slide horizontale est déjà utilisé pour naviguer entre les différents écrans d’accueil.
+Du à leur contexte d'utilisation, les widgets sont techniquement 
+limités pour ce qui est de leurs interaction avec l'utilisateur.
+Par exemple, un widget présent sur l'écran d’accueil ne peut réagir 
+qu'aux pressions de l'utilisateur et au slide vertical.
+Le slide horizontal est déjà utilisé pour naviguer entre les
+différents écrans d’accueil.
 \end{frame}
 
 \section{Créer un widget d'informations}
@@ -167,11 +172,11 @@ Du à leur contexte d'utilisation, les widgets ont des limitations technique sur
 \includegraphics[scale=0.05]{remote.png}
 \end{center}
 \begin{block}{RemoteViews}
-Les widgets vivent dans une application \emph{hôte}, et il faut un mécanisme pour conserver les droits de l'application dont ils proviennent. Pour cela, leur vue est construire via des \verb!RemoteViews!. Les \verb!RemoteViews! conservent les droits de l'application \emph{invitée}.
+Les widgets vivent dans une application \emph{hôte} et il faut un mécanisme pour conserver les droits de l'application dont ils proviennent. Pour cela, leur vue est construite via des \verb!RemoteViews!. Les \verb!RemoteViews! conservent les droits de l'application \emph{invitée}.
 \end{block}
 
 \begin{block}{BroadcastReceiver}
-Les interfaces sont construites par un \verb!BroadcastReceiver!, qui produit les objets \verb!RemoteViews!. Cette objet est maintenue en vie par le système Android.
+Les interfaces sont construites par un \verb!BroadcastReceiver! qui produit les objets \verb!RemoteViews!. Cet objet est maintenu en vie par le système Android.
 \end{block}
 \end{frame}
 
@@ -183,7 +188,7 @@ Les interfaces sont construites par un \verb!BroadcastReceiver!, qui produit les
 \begin{block}{Pour créer un widget, il faut :}
 \begin{itemize}
 \item Définir son layout
-\item Créer un fichier XML (AppWidgetProviderInfo) qui décris ses propriétés
+\item Créer un fichier XML (AppWidgetProviderInfo) qui décrit ses propriétés
 \item Construire un BroadcastReceiver qui est utilisé pour construire l'interface du Widget.
 \item Déclarer le widget dans le Manifest.
 \item (Optionel) Ajouter une activité qui configure le widget.
@@ -199,8 +204,8 @@ Les interfaces sont construites par un \verb!BroadcastReceiver!, qui produit les
 \begin{center}
 \includegraphics[scale=0.2]{container.jpg}
 \end{center}
-On ne peux utiliser que certains containers.
-\begin{block}{Ne sont disponible que les layouts :}
+On ne peut utiliser que certains containers.
+\begin{block}{Ne sont disponibles que les layouts :}
 \begin{itemize}
 \item FrameLayout
 \item LinearLayout
@@ -214,7 +219,7 @@ On ne peux utiliser que certains containers.
 \begin{center}
 \includegraphics[scale=0.5]{comps.png}
 \end{center}
-On ne peux utiliser que certains composants graphiques.
+On ne peut utiliser que certains composants graphiques.
 \begin{block}{Seulement les composants suivants :}
 \begin{itemize}
 \begin{minipage}[t]{0.4\linewidth}
@@ -244,7 +249,7 @@ Par la suite, on supposera avoir décrit l'apparence de notre widget dans un fic
 \includegraphics[scale=0.35]{listener.jpg}
 \end{center}
 \begin{block}{OnClickListener}
-La seul interaction possible avec la vue s'effectue via un \verb!OnClickListener!. Ce listener peut être lier à un \emph{composant graphique}, et déclenché par l'utilisateur au moment du clic sur ce \emph{composant}.
+La seul interaction possible avec la vue s'effectue via un \verb!OnClickListener!. Ce listener peut être lié à un \emph{composant graphique} et déclenché par l'utilisateur au moment du clic sur ce \emph{composant}.
 \end{block}
 \end{frame}
 
@@ -253,7 +258,7 @@ La seul interaction possible avec la vue s'effectue via un \verb!OnClickListener
 \begin{frame}[fragile]
 \frametitle{Description du Widget}
 
-\begin{exampleblock}{On créer un fichier \verb!mywidget\_info.xml! dans \verb!/res/xml/! contenant : }
+\begin{exampleblock}{On crée un fichier \verb!mywidget\_info.xml! dans \verb!/res/xml/! contenant : }
 \lstset{language=xml}
 \begin{lstlisting}
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
@@ -272,7 +277,7 @@ La seul interaction possible avec la vue s'effectue via un \verb!OnClickListener
 \begin{frame}[fragile]
 \frametitle{Description du Widget}
 
-\begin{exampleblock}{Si l'on veux une activité de configuration : }
+\begin{exampleblock}{Si on veut une activité de configuration : }
 \lstset{language=xml}
 \begin{lstlisting}
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
@@ -283,7 +288,7 @@ La seul interaction possible avec la vue s'effectue via un \verb!OnClickListener
 \end{exampleblock}
 
 \begin{block}{}
-Cette ligne indique la classe correspondant à l'activité qui doit être exécute.
+Cette ligne indique la classe correspondant à l'activité qui doit être exécutée.
 \end{block}
 \end{frame}
 
@@ -291,12 +296,12 @@ Cette ligne indique la classe correspondant à l'activité qui doit être exécu
 \frametitle{Description du Widget}
 \begin{block}{Description des attributs.}
 \begin{itemize}
-\item \verb!minWidth! and \verb!minHeight! contrôlent la taille minimale,
+\item \verb!minWidth! et \verb!minHeight! contrôlent la taille minimale,
 \item \verb!updatePeriodMillis! définit le temps de rafraichissement,
 \item \verb!initialLayout! indique le layout de votre widget,
-\item \verb!reviewImage! indique l'image qui sera affiché dans la liste des widgets,
-\item \verb!resizeMode! indique dans quels directions l'on peux redimensionner le widget,
-\item \verb!widgetCategory! indique dans quels zone le widget peux être placé (home\_screen et keyguard).
+\item \verb!reviewImage! indique l'image qui sera affichée dans la liste des widgets,
+\item \verb!resizeMode! indique dans quelles directions on peut redimensionner le widget,
+\item \verb!widgetCategory! indique dans quelle zone le widget peut être placé (home\_screen et keyguard).
 \end{itemize}
 \end{block}
 \end{frame}
@@ -305,7 +310,7 @@ Cette ligne indique la classe correspondant à l'activité qui doit être exécu
 
 \begin{frame}[fragile]
 \frametitle{La classe provider}
-On ajoute une nouvelle classe \verb!MyWidgetProvider!, chargée de construire les vues.
+On ajoute une nouvelle classe \verb!MyWidgetProvider! chargée de construire les vues.
 \begin{exampleblock}{Notre classe provider :}
 \lstset{language=java}
 \begin{lstlisting}
@@ -328,7 +333,7 @@ public class MyWidgetProvider extends AppWidgetProvider {
 \begin{itemize}
 \item[] {\color{blue} \verb!context!} -- Informations sur votre application,
 \item[] {\color{blue} \verb!appWidgetManager!} -- Le gestionnaire de widgets,
-\item[] {\color{blue} \verb!appWidgetIds!} -- La liste de toute les instances de notre widget.
+\item[] {\color{blue} \verb!appWidgetIds!} -- La liste de toutes les instances de notre widget.
 \end{itemize}
 \end{block}
 \end{frame}
@@ -378,10 +383,10 @@ for (int i = 0; i < N; i++) {
 \begin{frame}
 \frametitle{L'intent ACTION\_APPWIDGET\_UPDATE}
 \begin{block}{Une pending intent}
-C'est intention qui est conservé un certain laps de temps avant d’être envoyé au système. Les données qu'elle contient sont conservé aussi longtemps que l'intent existe.
+C'est une intention qui est conservé un certain laps de temps avant d’être envoyé au système. Les données qu'elle contient sont conservées aussi longtemps que l'intent existe.
 \end{block}
 \begin{block}{ACTION\_APPWIDGET\_UPDATE}
-L'intention \verb!ACTION\_APPWIDGET\_UPDATE! permet de mettre à jour la vue d'un widget, en provoquant l'appelle à \verb!onUpdate!.
+L'intention \verb!ACTION\_APPWIDGET\_UPDATE! permet de mettre à jour la vue d'un widget en provoquant l'appel à \verb!onUpdate!.
 \end{block}
 \end{frame}
 
@@ -392,12 +397,12 @@ L'intention \verb!ACTION\_APPWIDGET\_UPDATE! permet de mettre à jour la vue d'u
 // Creation de notre intention
 Intent intent = new Intent();
 
-//Intent de type mise a jours de widget
+//Intent de type mise a jour de widget
 intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-//On dit quel widget on veut mettre a jours
+//On dit quel widget on veut mettre a jour
 intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
 
-//Si l'intent existe deja, on la met juste a jours.
+//Si l'intent existe deja, on la met juste a jour.
 PendingIntent pendingIntent = PendingIntent.getBroadcast(
     context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 remoteViews.setOnClickPendingIntent(R.id.button, pendingIntent);
@@ -413,7 +418,7 @@ remoteViews.setOnClickPendingIntent(R.id.button, pendingIntent);
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{L'activitée de configuration}
+\frametitle{L'activité de configuration}
 \begin{block}{L'activité sera lancée par une intent}
 \lstset{language=xml}
 \begin{lstlisting}
@@ -424,7 +429,7 @@ remoteViews.setOnClickPendingIntent(R.id.button, pendingIntent);
 </activity>
 \end{lstlisting}
 \end{block}
-\begin{block}{Et elle doit aussi être spécifié au provider}
+\begin{block}{Et elle doit aussi être spécifiée au provider}
 \begin{lstlisting}
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
     ...
@@ -438,8 +443,8 @@ remoteViews.setOnClickPendingIntent(R.id.button, pendingIntent);
 \begin{frame}
 \frametitle{Bon à savoir...}
 \begin{itemize}
-\item L'application de configuration doit toujours renvoyer un résultat. Ce résultat doit inclure l'ID du widget obtenus par l'application de configuration à travers le champ \verb!EXTRA\_APPWIDGET\_ID!.
-\item La fonction onUpdate n'est pas appelée lors de la création du widget. Ce sera à l'application de configuration de provoquer son appelle.
+\item L'application de configuration doit toujours renvoyer un résultat. Ce résultat doit inclure l'ID du widget obtenu par l'application de configuration à travers le champ \verb!EXTRA\_APPWIDGET\_ID!.
+\item La fonction onUpdate n'est pas appelée lors de la création du widget. Ce sera à l'application de configuration de provoquer son appel.
 \end{itemize}
 
 \end{frame}
@@ -495,8 +500,8 @@ finish();
 \end{lstlisting}
 \end{block}
 
-\begin{block}{Conseille :}
-Créez l'intent de résultat dès le début de l'activité, avec la valeur \verb!RESULT_CANCELED!, et liez la avec \verb!setResult()!. De cette façon, si l'utilisateur quitte l'activité de configuration avec le bouton back, le widget ne sera pas créé.
+\begin{block}{Conseil :}
+Créez l'intent de résultat dès le début de l'activité, avec la valeur \verb!RESULT_CANCELED!, et liez-la avec \verb!setResult()!. De cette façon, si l'utilisateur quitte l'activité de configuration avec le bouton back, le widget ne sera pas créé.
 \end{block}
 
 \end{frame}
@@ -505,16 +510,18 @@ Créez l'intent de résultat dès le début de l'activité, avec la valeur \verb
 \section{Conclusion}
 
 \begin{frame}
-TODO Image
+\begin{center}
+\includegraphics[scale=0.3]{widgets.jpg}
+\end{center}
 \begin{block}{Widgets}
-Avec un widget, vous pouvez enrichir vos application et proposé à vos utilisateur le suivi d'un monitoring sportif, l'affichage de données agrégées, les derniers messages reçu sur une application sociale, etc.
+Avec un widget, vous pouvez enrichir vos application et proposer à vos utilisateurs le suivi d'un monitoring sportif, l'affichage de données agrégées, les derniers messages reçus sur une application sociale, etc.
 \end{block}
 
 \end{frame}
 
 \begin{frame}
 \begin{center}
-Pour me contacter : jeremy.cochoy@u-psud.fr, merci et à bientôt.
+Pour me contacter : jeremy.cochoy@gmail.com, merci et à bientôt.
 
 \medskip
 \medskip

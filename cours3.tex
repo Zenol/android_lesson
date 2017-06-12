@@ -42,8 +42,8 @@
 
 \title{Android - Les bonnes intentions}
 \author{Jérémy S. Cochoy}
-\institute{INRIA Paris-Saclay | jeremy.cochoy@u-psud.fr}
-\date{Novembre 2015}
+\institute{INRIA Paris-Saclay | jeremy.cochoy@gmail.com}
+\date{Mars 2017}
 
 
 \begin{frame}
@@ -65,7 +65,7 @@
 
 \end{frame}
 
-\section{Démonstration GIT et GitHub}
+\section{GIT et GitHub}
 
 \begin{frame}
 \frametitle{GitHub}
@@ -80,7 +80,7 @@
 \frametitle{Qu'est-ce qu'une intention?}
 
 \begin{block}{Une \verb!Intent!}
-Une \verb!Intent! est un objet qui représente un message, et permet de demander une action a un Composant.
+Une \verb!Intent! est un objet qui représente un message, et permet de demander une action à un Composant.
 \end{block}
 
 \begin{block}{Les usages principaux :}
@@ -97,7 +97,7 @@ Une \verb!Intent! est un objet qui représente un message, et permet de demander
 \frametitle{Démarrer une activité}
 
 \begin{block}{\verb!Activity!}
-Une \verb!Activity! représente un écran dans une app. On peux lancer une activité en donnant un \verb!Intent! à \verb!startActivity()!. L'intention décrit l'activité et lui fournit les données.
+Une \verb!Activity! représente un écran dans une app. On peut lancer une activité en donnant un \verb!Intent! à \verb!startActivity()!. L'intention décrit l'activité et lui fournit les données.
 \end{block}
 
 \begin{block}{Avec résultat}
@@ -121,7 +121,7 @@ Si l'activité doit fournir un résultat, on dispose de \verb!startActivityForRe
 \frametitle{Délivrer un message}
 
 \begin{block}{Broadcast}
-Un broadcast est un message que n'importe quelle application peux recevoir.
+Un broadcast est un message que n'importe quelle application peut recevoir.
 \end{block}
 
 \begin{block}{Délivrer un message}
@@ -148,7 +148,7 @@ Donner un \verb!Intent! à \verb!sendBroadcast()! ou \verb!sendOrderedBroadcast(
 
 \begin{frame}[fragile]
 \frametitle{Exemple de filtre}
-\begin{block}{Filtre le partage d'images}
+\begin{block}{Filtrer le partage d'images}
 \lstset{language=XML}
 \begin{lstlisting}
 <activity android:name="ShareActivity">
@@ -183,7 +183,7 @@ Nécessaire pour une intention explicite.
 \begin{block}{}
 Un \verb!Service! doit toujours être lancer explicitement.
 \end{block}
-Le champ de l'\verb!Intent! est un objet \verb!ComponentName! qui contient un chemin complet vers le nom de la classe. Par exemple : \emph{com.example.ExampleActivity}. La valeur peut être fixer avec \verb!setComponent()!, \verb!setClass()!, \verb!setClassName()!, ou le constructeur de l'\verb!Intent!.
+Le champ de l'\verb!Intent! est un objet \verb!ComponentName! qui contient un chemin complet vers le nom de la classe. Par exemple : \emph{com.example.ExampleActivity}. La valeur peut être fixée avec \verb!setComponent()!, \verb!setClass()!, \verb!setClassName()!, ou le constructeur de l'\verb!Intent!.
 
 \end{frame}
 
@@ -195,7 +195,7 @@ Une chaîne qui spécifie le type d'action à effectuer.
 \begin{itemize}
 \item \verb!ACTION\_VIEW! Avec \verb!startActivity()! pour afficher une information (Photo, localisation...)
 \item \verb!ACTION\_SEEND! Avec \verb!startActivity()! , pour "partager" (share).
-\item \verb!ACTION\_EDIT! Fournis un document à éditer.
+\item \verb!ACTION\_EDIT! Fournit un document à éditer.
 \item \verb!ACTION\_PICK! Sélectionne un fichier / image / etc...
 \end{itemize}
 \end{block}
@@ -223,7 +223,7 @@ Permet de passer des données sous la forme clef-valeur.
 Via la méthode \verb!putExtra()!, ou un \verb!Bundle! avec \verb!putExtras()!.
 
 \begin{block}{Exemple :}
-Dans un ACTION\_SEND, on peux vouloir ajouter les valeurs EXTRA\_EMAIL et EXTRA\_SUBJECT pour envoyer un e-mail.
+Dans un ACTION\_SEND, on peut vouloir ajouter les valeurs EXTRA\_EMAIL et EXTRA\_SUBJECT pour envoyer un e-mail.
 \end{block}
 
 \end{frame}
@@ -232,7 +232,7 @@ Dans un ACTION\_SEND, on peux vouloir ajouter les valeurs EXTRA\_EMAIL et EXTRA\
 \frametitle{Catégories}
 \begin{itemize}
 
-\item Permet d’être plus précis sur quels activités sont concerner.
+\item Permet d’être plus précis sur quelles activités sont concernées.
 
 \item La CATEGORY\_DEFAULT convient à la plupart des usages.
 
@@ -336,11 +336,10 @@ public class ExampleActivity extends Activity {
 \end{lstlisting}
 
 \end{frame}
-\section{Conclusion}
 
 \begin{frame}
 \begin{center}
-Pour me contacter : jeremy.cochoy@u-psud.fr, merci et à bientôt.
+Merci et à bientôt.
 
 \medskip
 \medskip
